@@ -1,0 +1,25 @@
+User-agent: Mediapartners-Google
+Disallow: 
+User-agent: Googlebot
+Disallow: 
+User-agent: Adsbot-Google
+Disallow: 
+User-agent: Googlebot-Image
+Disallow: 
+User-agent: Googlebot-Mobile
+Disallow: 
+User-agent: MSNBot
+Disallow: 
+User-agent: bingbot
+Disallow: 
+User-agent: Slurp
+Disallow: 
+User-Agent: Yahoo! Slurp
+Disallow: 
+# Directories
+User-agent: *
+Disallow: /
+Disallow: /cgi-bin/
+Disallow: /assets/
+Disallow: /logs/
+Disallow: /uploads/

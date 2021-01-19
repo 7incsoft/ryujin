@@ -6,7 +6,15 @@
 * -------------------------------
 */
 
-$list_conf = array('web');
+/** Load config **/
+
+$list_conf = [
+			
+			
+			'web',
+			
+			];
+
 
 foreach($list_conf as $conf)
 {

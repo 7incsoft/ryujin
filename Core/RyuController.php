@@ -17,13 +17,16 @@ class RyuController{
     public $handler;
     public $curl;
     public $locale;
-
+    public $bot;
+    public $api;
+    
     public function __construct()
     {
         $this->handler = new RyuHandler;
         $this->curl = new RyuCurl;
         $this->locale = new RyuLocale;
-     
+        $this->bot = new RyuBots; 
+        $this->api = new RyuApi;
     }    
     /**
      * view
@@ -47,6 +50,22 @@ class RyuController{
         }
     }    
     /**
+     * helper
+     *
+     * @param  mixed $helper
+     * @return void
+     */
+    public function helper($helper)
+    {
+        if(file_exists(HELPER_PATH . $helper .'_helper.php'))
+        {
+            require_once HELPER_PATH . $helper .'_helper.php';
+        }else{
+            echo "Helper not found";
+            exit;
+        }
+    }
+    /**
      * render
      *
      * @param  mixed $template
@@ -67,5 +86,14 @@ class RyuController{
         }else{
             echo VIEW_PATH.$template.'.php doesnt exist';
         }
+    }
+
+    public function redirect($to,$delay ='0')
+    {
+        @ob_start();
+        @ob_flush();
+        @header('HTTP/1.1 302 Moved Permanent');
+        @header('location:'.$to);
+        return;
     }
 }

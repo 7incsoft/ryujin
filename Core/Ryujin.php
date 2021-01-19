@@ -19,6 +19,7 @@ Class Ryujin{
      * @return void
      */
     public function run(){
+        session_start();
         $this->init();
         $this->autoload();
         $this->lib_load();
@@ -42,6 +43,7 @@ Class Ryujin{
         define('APP_PATH', ROOT_PATH . 'App'.SEPARATOR);
 
         define('VIEW_PATH',APP_PATH. 'views'.SEPARATOR);
+        define('HELPER_PATH',ROOT_PATH . 'Core'. SEPARATOR . 'helpers'.SEPARATOR);
 
         define('CONFIG_PATH', APP_PATH .'config' .SEPARATOR);
         require_once CONFIG_PATH.'config.php';
@@ -97,7 +99,7 @@ Class Ryujin{
     
         // Instantiate the controller class and call its action method
     
-        $controller_name = CONTROLLER . "Controller";
+        $controller_name = ucfirst(CONTROLLER) . "Controller";
     
         $action_name = ACTION."Action";
         
@@ -110,7 +112,7 @@ Class Ryujin{
         if(method_exists($controller,$action_name)){
         $controller->$action_name();
         }else{
-            throw new Exception($action_name,"Doesn't exists ");
+            throw new Exception($action_name."Doesn't exists ");
             exit;
         }
     

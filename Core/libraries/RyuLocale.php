@@ -624,15 +624,15 @@ public  $list = [
     #----
     $code = strtolower($code);
     if ($code == 'eu') {
-      return 'en_GB';
+      return 'en';
     }
     elseif ($code == 'ap') { # Asia Pacific
-      return 'en_US';
+      return 'en';
     }
     elseif ($code == 'cs') {
-       return 'sr_RS';
+       return 'sr';
     }elseif ($code == 'uk') {
-      $code = 'en_GB';
+      $code = 'en';
     }
     if (array_key_exists($code, $this->locale_list)) {
       if (strpos($this->locale_list[$code], ',') !== false) {
@@ -648,6 +648,25 @@ public  $list = [
         return $this->locale_list[$code]; 
       }
     }
-   return ;
+   return false;
+ }
+
+ public function countryCode_toName($code)
+ {
+   if(array_key_exists($code,$this->country_code))
+   {
+     return $this->country_code[$code];
+   }else{
+     return $code;
+   }
+ }
+ public function langCode_toName($code)
+ {
+   if(array_key_exists($code,$this->list))
+   {
+     return $this->list[$code];
+   }else{
+     return $code;
+   }
  }
 }

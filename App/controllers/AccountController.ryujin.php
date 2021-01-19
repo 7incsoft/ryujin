@@ -1,6 +1,6 @@
 <?php
 
-class accountController extends RyuController{
+class AccountController extends RyuController{
 
     public function indexAction()
     {

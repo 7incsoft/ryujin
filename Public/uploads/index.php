@@ -8,9 +8,7 @@
  * @copyright 7Inc Store 
  * 
  */
-require_once(dirname(__DIR__).'/Core/Ryujin.php');
-$ryu = new Ryujin;
-$ryu->run();
+
 ?>
 
 

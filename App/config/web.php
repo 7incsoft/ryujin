@@ -11,9 +11,13 @@ $config['web']['default_platform'] = '';
 $config['web']['default_controller'] = 'account'; 
 $config['web']['default_action'] = 'index';  
 
-$config['web']['url'] = 'http://127.0.0.1:5758/';
+$config['web']['direct_controller'] = 'Ap';
+$config['web']['direct_action'] = 'signin';
 
+$config['web']['default_lang'] = 'en';
 
+$config['web']['api_url'] = 'https://7inc.store/xapi/';
 
-$config['web']['title'] = '7inc Store';
-?>
+$config['web']['app_name'] = 'RyuJin Framework';
+$config['web']['app_version'] = 'v1.0-2021';
+$config['web']['short_desc'] = 'Shin-Ryujin ';
