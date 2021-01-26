@@ -19,6 +19,7 @@ class RyuController{
     public $locale;
     public $bot;
     public $api;
+    public $sec;
     
     public function __construct()
     {
@@ -27,7 +28,19 @@ class RyuController{
         $this->locale = new RyuLocale;
         $this->bot = new RyuBots; 
         $this->api = new RyuApi;
-    }    
+        $this->sec = new RyuSecurity;
+    }   
+    public function minify($html)
+    {
+        $search = array('/\>[^\S ]+/s', '/[^\S ]+\</s', '/(\s)+/s');
+        $replace = array('>', '<', '\\1', '');
+        $minify = preg_replace($search, $replace, $html);
+        $minify = preg_replace('/<div/', '<!-- '.substr(md5($_SERVER['REMOTE_ADDR']),0,6).' --><div', $minify);
+        $minify = preg_replace('/<\/div/', '<!-- '.base64_encode(time()).' --></div', $minify);
+        $undetect = preg_replace('/class=\"/', 'class="'.substr(sha1((rand())),0,5).' ', $minify);
+
+        return $undetect;
+    } 
     /**
      * view
      *
@@ -37,6 +50,7 @@ class RyuController{
      */
     public function view($view,$data = null)
     {
+        ob_start('self::minify');
         if($data !== null)
         {
             extract($data);
@@ -48,6 +62,7 @@ class RyuController{
             echo "error ".VIEW_PATH."{$view}.php";
             exit;
         }
+        ob_end_flush();
     }    
     /**
      * helper

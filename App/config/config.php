@@ -9,10 +9,10 @@
 /** Load config **/
 
 $list_conf = [
-			
-			
+			'amz',
+			'app',
 			'web',
-			
+			'ryujin'
 			];
 
 

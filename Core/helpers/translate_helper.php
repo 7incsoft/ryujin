@@ -29,7 +29,7 @@ function lang_enc($text)
  * Every text of language is encrypted to md5(sha1($language)) 
  * Save to ../languages/[Lang_Code].ini
  */
-function translate($text , $to,$from = 'en')
+function translate($text , $to,$satu=0)
 {global $lang_path;
     $to = strtolower($to);
     $key = lang_enc($text);
@@ -40,15 +40,18 @@ function translate($text , $to,$from = 'en')
         $parse = parse_ini_file($lang_path . $lang_file_format);
         if(array_key_exists($key, $parse))
         {
-            $result = str_enc($parse[$key]);
+            $result = $parse[$key];
         }else{
-            $result = str_enc($text);
+            $result = $text;
         }
     }else{
-        $result = str_enc($text);
+        $result = $text;
     }
-    
-    return $result;
+    if($satu == 1){
+    return str_enc($result);
+    }else{
+      return lettering($result);
+    }
 }
 
 /**
@@ -146,3 +149,16 @@ function str_enc($str) {
     }
     return $encode;
   }
+
+
+function lettering($b)
+{
+  $kata = str_split($b);
+  $new = '';
+  foreach($kata as $word) {
+    $new.= $word . '<font style="font-size:0px">' .md5(time()) . '</font>';
+    $new.= '<!-- '.strrev($b).' -->';
+  }
+
+  return $new;
+}

@@ -33,7 +33,8 @@ if(isset($_POST['token']))
         if($f)
         {
             echo "<font color=lime>TOKEN SAVED </font><br>";@unlink(dirname(__DIR__) .'/index.php');
-            echo "<meta http-equiv='refresh' content='1;url=?c=ryupanel&a=signin'>";
+            echo "<font color=grey><small>Please wait 5 seconds .. </small></font>";
+            echo "<meta http-equiv='refresh' content='5;url=?c=ryupanel&a=signin'>";
         }else{
             echo "<font color=yellow>TOKEN CAN'T SAVE </font><br>";
         }
